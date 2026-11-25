@@ -52,3 +52,31 @@ was made, and nothing was pushed to GitHub.
 **23. User:** Report the result when you are done. Do not push to GitHub or submit.
 
 **24. Assistant:** Done. Output verified: /tmp/out1/entry.png, 14,686 bytes, 1024x1024, byte-identical across two runs. Program folder is ~/workspace/news-image-20261125-program/. Nothing pushed, nothing submitted, nothing signed.
+
+**25. User:** Would adding pictures be better?
+
+**26. Assistant:** Yes. The text-only poster meets the spec, but photos make each story instantly recognisable. I will add one thumbnail per story, embedded inside main.py — the sandbox has no network and reads no sibling files, so embedding is the only way.
+
+**27. User:** Use the photos we already have, do not download new ones.
+
+**28. Assistant:** Reusing the CC photos from workspace/imagine_media/news-v2-src/ (the earlier v2 poster): Hormuz aerial, Riyadh skyline, Mariupol street, Huawei campus, White House, NYSE, Cartagena, Solomon Islands map, Khartoum, Shenzhou launch. No new downloads.
+
+**29. User:** How big can the thumbnails be without breaking the 1 MiB output limit?
+
+**30. Assistant:** I tested 168x112 first: the text wrapped to 4 lines on two items. Settled on 144x104 thumbnails in a 2-column grid (5 rows), headline wrapped at 26 characters per line, 3 lines max for all 10 items. Embedded as base64+zlib raw RGB, about 443 KB of base64 in main.py.
+
+**31. User:** Keep the headlines and title exactly the same.
+
+**32. Assistant:** Confirmed. Same title "WORLD NEWS — 25 NOVEMBER 2026" and the same 10 headlines, unchanged. Only the layout changed: single column to 2-column grid with a photo on the left of each card and a number badge on the photo corner.
+
+**33. User:** Run it twice and check determinism and size.
+
+**34. Assistant:** Ran it to /tmp/out1 and /tmp/out2. Both files are 342,076 bytes and byte-identical — SHA-256 2cd1666041696a31f4971f9614327c39c96acda3434a2b955b615e4767eb60eb. PNG header valid, dimensions 1024x1024, size under the 1 MiB limit.
+
+**35. User:** Look at the image and check the photos and text.
+
+**36. Assistant:** Rendered and inspected the PNG: all 10 headlines are complete in 3 lines, no overlap, nothing cut off. 9 of 10 thumbnails are clearly recognisable (White House, NYSE flag, Cartagena, Solomon map, Khartoum, Shenzhou rocket, Riyadh skyline, Hormuz sea, Mariupol street). Weakest are Huawei (mostly trees in the centre crop) and Mariupol (a street, not the theatre). The "10" badge is tight but readable. Saved the render to workspace/imagine_media/news-image-20261125-program-entry-v2.png.
+
+**37. User:** Update the README, this transcript and makefun-run.json, then report. Do not push to GitHub or submit.
+
+**38. Assistant:** Done. README now documents the embedded photos and their sources; makefun-run.json carries the new SHA-256 and size. Nothing pushed, nothing submitted, nothing signed.

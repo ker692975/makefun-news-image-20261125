@@ -1,1 +1,42 @@
-{"bounty":"https://make.fun/bounty/news-image-20261125","competition":"news-image-20261125","context":["main.py","README.md","TRANSCRIPT.md"],"declared":{"agent":"Muse (Muse Spark)","deterministic":true,"entrypoint":"main.py","harness":"Muse app session, no makefun kit record","language":"Python 3.13 (run here on Python 3.12.3; code uses only 3.13-compatible stdlib)","network":false,"output":"/output/entry.png","randomness":false},"format":"makefun-run/1","github_username":"ker692975","handed_over":"Built in Muse, not in a makefun-recorded harness session. This run record and TRANSCRIPT.md were exported by hand from the Muse chat session; they carry no provider token-usage rows. Per make.fun skill.md, a handed-over session may be ranked but takes no paid place where handed_over_places is none. This file is provided honestly so reviewers can see exactly how the entry was built.","makefun_username":"er-kai","prompt":{"origin":"user instruction in Muse chat, 2026-11-26","text":"Build the make.fun News image 2026-11-25 entry as a PROGRAM, not a static image. Python 3.13 main.py, standard library only, deterministic, output /output/entry.png at most 1 MiB and at most 1024x1024, summing up 25 November 2026 world news in 10 items.","via":"Muse agent session"},"system_prompt":{"status":"not_available","why":"Built in the Muse app; the harness system prompt is not exposed as a file in this workspace."},"verification":{"byte_identical":true,"dimensions":"1024x1024","output_bytes":14686,"output_sha256":"d5247f08fbf108f24efe6e8c9921a109a682c50da74017cff779d5f85a96a4a4","runs":2,"verified_at":"2026-11-26 Asia/Shanghai"}}
+{
+  "bounty": "https://make.fun/bounty/news-image-20261125",
+  "competition": "news-image-20261125",
+  "context": [
+    "main.py",
+    "README.md",
+    "TRANSCRIPT.md"
+  ],
+  "declared": {
+    "agent": "Muse (Muse Spark)",
+    "deterministic": true,
+    "entrypoint": "main.py",
+    "harness": "Muse app session, no makefun kit record",
+    "language": "Python 3.13 (run here on Python 3.12.3; code uses only 3.13-compatible stdlib)",
+    "network": false,
+    "output": "/output/entry.png",
+    "photos": "10 CC thumbnails, 144x104 each, embedded as base64+zlib raw RGB in main.py; sources in README.md; no new downloads",
+    "randomness": false
+  },
+  "format": "makefun-run/1",
+  "github_username": "ker692975",
+  "handed_over": "Built in Muse, not in a makefun-recorded harness session. This run record and TRANSCRIPT.md were exported by hand from the Muse chat session; they carry no provider token-usage rows. Per make.fun skill.md, a handed-over session may be ranked but takes no paid place where handed_over_places is none. This file is provided honestly so reviewers can see exactly how the entry was built.",
+  "makefun_username": "er-kai",
+  "prompt": {
+    "origin": "user instruction in Muse chat, 2026-11-26",
+    "text": "Build the make.fun News image 2026-11-25 entry as a PROGRAM, not a static image. Python 3.13 main.py, standard library only, deterministic, output /output/entry.png at most 1 MiB and at most 1024x1024, summing up 25 November 2026 world news in 10 items. Revision: add one embedded CC photo thumbnail per story (144x104, base64+zlib raw RGB inside main.py), 2-column grid, keep headlines and title unchanged.",
+    "via": "Muse agent session"
+  },
+  "revision": "v2 2026-11-26: added embedded photos, 2-column grid; v1 text-only SHA-256 d5247f08fbf108f24efe6e8c9921a109a682c50da74017cff779d5f85a96a4a4 (14,686 bytes)",
+  "system_prompt": {
+    "status": "not_available",
+    "why": "Built in the Muse app; the harness system prompt is not exposed as a file in this workspace."
+  },
+  "verification": {
+    "byte_identical": true,
+    "dimensions": "1024x1024",
+    "output_bytes": 342076,
+    "output_sha256": "2cd1666041696a31f4971f9614327c39c96acda3434a2b955b615e4767eb60eb",
+    "runs": 2,
+    "verified_at": "2026-11-26 Asia/Shanghai"
+  }
+}
