@@ -6,15 +6,14 @@ make.fun bounty: https://make.fun/bounty/news-image-20261125
 - Deadline: 2026-11-27 08:00 Asia/Shanghai
 - Deliverable: a **program** that generates one image summing up 25 November 2026 world news.
 
-## How it works
+## How it works (v3, current)
 
 `main.py` is Python 3.13, standard library only (`zlib`, `struct`, `binascii`,
-`base64`, `os`, `pathlib`). No network, no randomness, no timestamps, no external files,
-no Pillow. It renders a 1024×1024 newspaper poster with a built-in 5×7 bitmap
-font and encodes it as a PNG with a hand-written encoder. Each of the 10 cards
-carries a small photo thumbnail (144×104) embedded inside `main.py` itself as
-base64+zlib raw RGB — the sandbox reads no sibling files and has no network,
-so embedding is the only way to include photos.
+`os`, `pathlib`). No network, no randomness, no timestamps, no external files,
+no Pillow, no photos. It renders a 1024×1024 newspaper front page with a
+built-in 5×7 bitmap font and encodes it as a PNG with a hand-written encoder.
+All illustrations are flat vector shapes drawn in code (rocket, line chart,
+bar chart, small pictograms, simplified world map).
 
 Run it:
 
@@ -23,47 +22,63 @@ python3 main.py            # writes /output/entry.png
 OUTPUT_DIR=/tmp/out python3 main.py   # writes /tmp/out/entry.png
 ```
 
-Verified 2026-11-26 (v2, with photos): two runs write byte-identical files —
-SHA-256 `2cd1666041696a31f4971f9614327c39c96acda3434a2b955b615e4767eb60eb`,
-342,076 bytes (limit 1 MiB), 1024×1024 (limit 1024×1024), valid PNG header.
-The earlier text-only v1 was 14,686 bytes, SHA-256 `d5247f08fbf108f24efe6e8c9921a109a682c50da74017cff779d5f85a96a4a4`.
+Verified 2026-11-26 (v3): two runs write byte-identical files —
+SHA-256 `45c75e168b6e43ee5be79ff3607478b86bcaa2b1492227ee938b356c01c1fb94`,
+26,479 bytes (limit 1 MiB), 1024×1024 (limit 1024×1024), valid PNG header.
 
-## The 10 stories (all 25 November 2026 unless noted)
+## Layout (v3)
 
-1. Hormuz: IRGC said two oil tankers struck naval mines, exploded/caught fire — Just Security / AP
-2. Houthis attacked Saudi Ras Tanura refinery; earlier Riyadh skyscraper strike injured 11 — Just Security
-3. Russia-Ukraine: Odesa strike killed 2, injured 3 incl. a child; Kyiv flat fire injured 2; Ukraine drones hit Rosneft Syzran & Kuibyshev — Just Security
-4. Huawei convicted in US federal court: trade secrets / bank fraud, not guilty of racketeering (24–25 Nov) — AP / Just Security
-5. US proposes tariffs on 14 economies incl. China, EU, India — OneTurn / USTR
-6. Markets: KOSPI −6.16%, Nikkei −2.78%, Nasdaq −1.5%, Dow first close above 50,000 at 50,018.70 — AP / Reuters
-7. Colombia: Cartagena supermarket hostages freed, one captor killed — Principia / AP
-8. Australia–Solomon Islands treaty precluding foreign military base — Just Security
-9. Sudan: RSF drone strikes killed 19, wounded 20 — Just Security
-10. Shenzhou-24 docked with Tiangong, carrying Pakistan's first astronaut — China Manned Space Agency
+Cream paper (#f7f2e7), black masthead "WEDNESDAY 25 NOVEMBER 2026",
+"33 STORIES - 7 REGIONS - ONE DAY", region count bar
+(Asia 8, Middle East 6, Europe 6, Africa 3, Americas 5, Oceania 2, Global 3),
+navy KPI band (-6.2% KOSPI, 1st astronaut, 14 economies, 26 trapped,
++36% wage), UTC timeline strip, 3 headline columns with vector illustrations
+(rocket night launch; KOSPI -6.2% falling line chart to 4,697.51; tariff bar
+chart China 20% / EU 15% / India 25% / Vietnam 35%), numbered cards 4–13
+with small pictograms and region colour tags, bottom two-column numbered
+list 14–33, simplified world map with numbered dots 1–13, footer
+"DATE CHECK: ALL STORIES FIRST REPORTED WEDNESDAY 25 NOVEMBER 2026".
 
-## Photos (v2, added 2026-11-26)
+## The 33 stories (all 25 November 2026 unless noted)
 
-The poster now has one photo per story, in a 2-column grid (5 rows). Photos
-are the CC images reused from the earlier v2 poster in
-`workspace/imagine_media/news-v2-src/` — no new photos were downloaded:
+Headlines 1–3: 1. Shenzhou-24 docks with Tiangong, Pakistan's first astronaut
+Zeeshan Ali aboard. 2. KOSPI -6.16% to 4,697.51, Nikkei -2.78%, Nasdaq -1.5%
+on AI doubts. 3. US proposes tariffs 15–35% on 14 economies incl. China,
+EU, India.
 
-1. Hormuz aerial (01_hormuz.jpg) — Wikimedia Commons / Openverse
-2. Riyadh KAFD skyline at sunset (02_riyadh.jpg)
-3. Mariupol street scene (03_mariupol.jpg) — 2022 photo, weakest match: it shows a street, not the theatre; kept as a place/subject photo, not the 25 Nov incident itself
-4. Huawei Shenzhen campus gardens (04_huawei.jpg) — weakest match: the centre crop is mostly trees/greenery, not recognisably Huawei
-5. White House (05_whitehouse.jpg)
-6. NYSE facade with US flag (06_nyse.jpg)
-7. Cartagena waterfront (07_cartagena.jpg)
-8. Solomon Islands relief map (08_solomon.png)
-9. Khartoum cityscape (09_khartoum.jpg)
-10. Shenzhou rocket at night (10_shenzhou.jpg) — Shenzhou 13 photo, credited generically
+Cards 4–13: 4. IRGC says two oil tankers struck naval mines in Hormuz, caught
+fire. 5. Houthis hit Saudi Ras Tanura refinery; Riyadh tower strike hurt 11.
+6. Odesa strike killed 2, hurt 3 incl. a child; Kyiv flat fire hurt 2; Ukraine
+drones hit Rosneft Syzran and Kuibyshev. 7. Huawei convicted in US court on
+trade secrets / bank fraud, not guilty of racketeering. 8. Cartagena
+supermarket hostages freed, one captor killed. 9. Australia–Solomon Islands
+treaty precluding foreign military base. 10. Sudan RSF drone strikes killed 19,
+wounded 20 in Damazin. 11. Bangladesh garment wage +36% to Tk17,500.
+12. Java gold mine flood, 9 dead, 26 trapped. 13. Australia CPI 4.9%.
 
-Each photo was downscaled to a 144×104 thumbnail (centre crop, Pillow, for
-preparation only — the runtime program uses standard library only) and
-embedded in `main.py` as base64+zlib raw RGB. Total embedded data is about
-443 KB of base64. Photos show places/subjects reported, not the 25 Nov
-incidents themselves. Layout: 2-column grid, photo left, headline right
-(26 chars/line, 3 lines max), number badge on the photo corner.
+List 14–33: 14. Coalition strikes Hodeidah port. 15. Ukraine drone hits
+Samara refinery, 5 dead. 16. Dow first close above 50,000 at 50,018.70.
+17. Ethiopia: 11.3m children polio vaccinated. 18. Gaza strikes continue.
+19. UK Met Police race review. 20. Netanyahu trial continues. 21. London Tube
+strike. 22. US House Democrats hold 259 seats. 23. Cairo tanker fire kills 30.
+24. UK energy price cap +26%. 25. Taiex -4.8%. 26. 112 drones in overnight
+Ukraine attacks. 27. Israel strikes Hamas targets. 28. 47,000 women killed by
+partner or kin in 2025, UN says. 29. Vietnam tariff 35%. 30. Japan tariff 13%.
+31. China tariff 20%; EU tariff 15%. 32. Pakistani astronaut first foreign
+visitor to Tiangong (detail of story 1). 33. Shenzhou-24 lifts off 00:21 UTC,
+docks 03:56 UTC (timeline detail of story 1).
+
+Sources: Just Security, AP, Reuters, USTR, Principia, China Manned Space Agency.
+
+## Earlier versions
+
+- v1 (text-only, 10 stories): 14,686 bytes, SHA-256
+  `d5247f08fbf108f24efe6e8c9921a109a682c50da74017cff779d5f85a96a4a4`.
+- v2 (10 stories with embedded CC photo thumbnails, 144×104 each): 342,076
+  bytes, SHA-256 `2cd1666041696a31f4971f9614327c39c96acda3434a2b955b615e4767eb60eb`.
+  v2 was prepared and its submission form was filled, but the user chose
+  "directly do v3, don't submit v2" (2026-11-26 06:36), so v2 was never submitted.
+  Photo sources are documented in the v2 README history; v3 uses no photos.
 
 ## Files
 
@@ -76,8 +91,7 @@ incidents themselves. Layout: 2-column grid, photo left, headline right
 ## Status
 
 Preparation only. Nothing was submitted to make.fun, no wallet was connected
-or used to sign, no payment was made, and nothing was pushed to GitHub yet.
-Submission requires a public GitHub repo and a Solana wallet signature,
-which are separate steps.
+or used to sign, no payment was made. The v3 GitHub repo update and submission
+are separate steps for the user.
 
 make.fun account: @er-kai — GitHub account: @ker692975

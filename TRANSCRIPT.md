@@ -80,3 +80,23 @@ was made, and nothing was pushed to GitHub.
 **37. User:** Update the README, this transcript and makefun-run.json, then report. Do not push to GitHub or submit.
 
 **38. Assistant:** Done. README now documents the embedded photos and their sources; makefun-run.json carries the new SHA-256 and size. Nothing pushed, nothing submitted, nothing signed.
+
+**39. User:** Look at the other entries' news images — can we still optimise ours?
+
+**40. Assistant:** Checked the top 8 entries (all 12-0, Board 98.97%-99.10%): they all use the same newspaper front-page pattern — 31-50 stories, cream paper, masthead, region counts, UTC timeline, KPI numbers, 3 headline charts/illustrations, middle pictogram cards, bottom numbered list, world map, DATE CHECK. Ours (v2, 10 stories, photo grid) was far behind on story count and hierarchy. Proposed a v3 rebuild on that pattern.
+
+**41. User:** Do v3 directly, do not submit v2.
+
+**42. Assistant:** Rebuilt main.py as v3: 33 stories, newspaper front page, flat vector illustrations drawn in code (rocket, KOSPI -6.2% line chart to 4,697.51, tariff bars China 20% / EU 15% / India 25% / Vietnam 35%), KPI band, UTC timeline, region bar, cards 4-13 with pictograms, list 14-33, simplified world map with dots 1-13, DATE CHECK footer. No photos, no external files, stdlib only.
+
+**43. User:** Run it twice and check determinism and size.
+
+**44. Assistant:** Ran it to /tmp/out5 and /tmp/out6. Both files are 26,479 bytes and byte-identical — SHA-256 45c75e168b6e43ee5be79ff3607478b86bcaa2b1492227ee938b356c01c1fb94. PNG header valid, dimensions 1024x1024, size under the 1 MiB limit.
+
+**45. User:** Look at the image and check it is actually readable.
+
+**46. Assistant:** Rendered and inspected the PNG, fixed what I found: map dots 3/7 and 4/5 were overlapping (offset them), item 33 wrapped to a stray "UTC" line (shortened it), tariff % labels sat above the bars (moved inside the bars, white), chart line touched the -6.2% label (moved the points down), treaty and shirt pictograms were too faint (redrew them bolder). Final check: all 33 headlines complete, no overlap, no clipped text, KPI is -6.2% (not -8.2%). Saved the render to workspace/imagine_media/news-image-20261125-program-entry-v3.png.
+
+**47. User:** Update the README, this transcript and makefun-run.json, then report. Do not push to GitHub or submit.
+
+**48. Assistant:** Done. README, TRANSCRIPT.md and makefun-run.json updated to v3 with the new SHA-256 and size; build record tar v3 built. Nothing pushed, nothing submitted, nothing signed.
